@@ -21,6 +21,6 @@ every sound and music was made by me even if some of the sounds were made from a
 
 # Screenshots (the game is this dark):
 ![ominous](screenshots\ominous.png)
-![ominous](screenshots\books.png)
-![ominous](screenshots\explotano.png)
-![ominous](screenshots\excavator.png)
+![books](screenshots\books.png)
+![BOOM](screenshots\explotano.png)
+![lobby](screenshots\excavator.png)
