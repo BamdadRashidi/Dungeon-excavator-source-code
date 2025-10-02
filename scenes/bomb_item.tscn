@@ -1,0 +1,217 @@
+[gd_scene load_steps=9 format=3 uid="uid://r8u13siakcsi"]
+
+[ext_resource type="Script" path="res://bomb_item.gd" id="1_j43jq"]
+[ext_resource type="Texture2D" uid="uid://c7ngrkqiehsa3" path="res://sprites/meus/Bombs1.png" id="2_4vioa"]
+[ext_resource type="AudioStream" uid="uid://bks6me8bce7tk" path="res://audio/Player and items/item sound.ogg" id="3_yrin6"]
+[ext_resource type="Texture2D" uid="uid://df6jk05ixdd4y" path="res://sprites/light better.png" id="4_lcxxm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_11nqk"]
+radius = 12.0
+
+[sub_resource type="Animation" id="Animation_jsbil"]
+length = 0.001
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D3:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../PointLight2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_siwe5"]
+resource_name = "item_pickup"
+length = 1.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Sprite2D3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Sprite2D2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Sprite2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../PointLight2D:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ho52m"]
+_data = {
+"RESET": SubResource("Animation_jsbil"),
+"item_pickup": SubResource("Animation_siwe5")
+}
+
+[node name="bomb_item" type="Area2D"]
+collision_mask = 8
+script = ExtResource("1_j43jq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_11nqk")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+scale = Vector2(0.366667, 0.366667)
+texture = ExtResource("2_4vioa")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(5, 0)
+scale = Vector2(0.366667, 0.366667)
+texture = ExtResource("2_4vioa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4, 2)
+scale = Vector2(0.366667, 0.366667)
+texture = ExtResource("2_4vioa")
+
+[node name="bombanim" type="AnimationPlayer" parent="."]
+root_node = NodePath("../item sound")
+libraries = {
+"": SubResource("AnimationLibrary_ho52m")
+}
+
+[node name="item sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_yrin6")
+volume_db = 2.5
+bus = &"SFX"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+autostart = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.65098, 0.529412, 0.768627, 1)
+energy = 0.3
+texture = ExtResource("4_lcxxm")
+texture_scale = 0.2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

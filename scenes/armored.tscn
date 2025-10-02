@@ -1,0 +1,192 @@
+[gd_scene load_steps=21 format=3 uid="uid://cls05m3dghvkh"]
+
+[ext_resource type="Script" path="res://scenes/armored.gd" id="1_c71u1"]
+[ext_resource type="PackedScene" uid="uid://b5dy40jolexyw" path="res://scenes/armr.tscn" id="2_a7w1s"]
+[ext_resource type="AudioStream" uid="uid://bgpkxarqixler" path="res://audio/Player and items/knight angy.ogg" id="3_vwu1t"]
+[ext_resource type="Texture2D" uid="uid://bbihm41jkw8l2" path="res://sprites/fat fuck2.png" id="4_3o8vs"]
+[ext_resource type="AudioStream" uid="uid://b1a3vhhb4bobo" path="res://audio/enemies/enem ded.ogg" id="4_gmbn2"]
+[ext_resource type="Texture2D" uid="uid://bssdmdbtrygeb" path="res://sprites/fatfuckspritesheet.png" id="4_qxnvb"]
+[ext_resource type="Texture2D" uid="uid://djw4flkqqujwc" path="res://sprites/fat fuck1.png" id="5_hpgiu"]
+[ext_resource type="AudioStream" uid="uid://cngodp77eqvjq" path="res://audio/Voices squash hmm.mp3" id="8_ojupb"]
+[ext_resource type="Texture2D" uid="uid://df6jk05ixdd4y" path="res://sprites/light better.png" id="9_uron5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_24wdx"]
+size = Vector2(16, 18)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sfogs"]
+radius = 54.0093
+
+[sub_resource type="Animation" id="Animation_cb7gy"]
+resource_name = "fatfuck_died_of_high_calories"
+length = 0.5
+step = 0.05
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.45),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"summonparticle"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../knightded:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fvwjl"]
+_data = {
+"fatfuck_died_of_high_calories": SubResource("Animation_cb7gy")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlnol"]
+atlas = ExtResource("4_qxnvb")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1250"]
+atlas = ExtResource("4_qxnvb")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ty77"]
+atlas = ExtResource("4_qxnvb")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5x41"]
+atlas = ExtResource("4_3o8vs")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eebc7"]
+atlas = ExtResource("5_hpgiu")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yyqw4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlnol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1250")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ty77")
+}],
+"loop": true,
+"name": &"SPEEN",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5x41")
+}],
+"loop": true,
+"name": &"angy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eebc7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_172jy"]
+radius = 77.0
+
+[node name="armored" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_c71u1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_24wdx")
+
+[node name="armr" parent="." instance=ExtResource("2_a7w1s")]
+position = Vector2(-27, -5)
+
+[node name="armr2" parent="." instance=ExtResource("2_a7w1s")]
+position = Vector2(1, 24)
+
+[node name="armr3" parent="." instance=ExtResource("2_a7w1s")]
+position = Vector2(27, -5)
+
+[node name="armr4" parent="." instance=ExtResource("2_a7w1s")]
+position = Vector2(0, -34)
+
+[node name="sight" type="Area2D" parent="."]
+position = Vector2(0, -5)
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sight"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_sfogs")
+
+[node name="attacktimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="knight grunt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_vwu1t")
+volume_db = 3.0
+bus = &"SFX"
+
+[node name="fatfuckplayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../fatfucksprite")
+libraries = {
+"": SubResource("AnimationLibrary_fvwjl")
+}
+
+[node name="fatfucksprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -8)
+scale = Vector2(0.683333, 0.666667)
+sprite_frames = SubResource("SpriteFrames_yyqw4")
+animation = &"SPEEN"
+frame = 2
+frame_progress = 0.698083
+
+[node name="threatening_area" type="Area2D" parent="."]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="threatening_area"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_172jy")
+
+[node name="knightded" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_gmbn2")
+volume_db = 1.0
+pitch_scale = 0.5
+bus = &"SFX"
+
+[node name="angry pumpkin" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_ojupb")
+volume_db = 5.0
+bus = &"SFX"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.596078, 0.623529, 0.470588, 1)
+energy = 0.3
+texture = ExtResource("9_uron5")
+texture_scale = 0.7
+
+[connection signal="body_entered" from="sight" to="." method="_on_sight_body_entered"]
+[connection signal="body_exited" from="sight" to="." method="_on_sight_body_exited"]
+[connection signal="timeout" from="attacktimer" to="." method="_on_attacktimer_timeout"]
+[connection signal="body_entered" from="threatening_area" to="." method="_on_threatening_area_body_entered"]
+[connection signal="body_exited" from="threatening_area" to="." method="_on_threatening_area_body_exited"]

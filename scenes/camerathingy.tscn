@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://djp5l6imbum6p"]
+
+[ext_resource type="Script" path="res://scenes/camerathingy.gd" id="1_80nyo"]
+
+[node name="camerathingy" type="Area2D"]
+collision_mask = 128
+script = ExtResource("1_80nyo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="center" type="Marker2D" parent="."]
+position = Vector2(-5, 1)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

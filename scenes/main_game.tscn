@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://di7egxf05dm1y"]
+
+[ext_resource type="PackedScene" uid="uid://c0o1a4cbuuqi8" path="res://scenes/menu_player_manager.tscn" id="1_r4ba6"]
+[ext_resource type="PackedScene" uid="uid://dn2h7nr3cl8gj" path="res://scenes/Player.tscn" id="1_uhwhc"]
+[ext_resource type="PackedScene" uid="uid://cmkxq8ypx0jc0" path="res://scenes/pause_menu.tscn" id="3_dhkfq"]
+
+[node name="main game" type="Node2D"]
+
+[node name="menu_player_manager" parent="." instance=ExtResource("1_r4ba6")]
+process_mode = 3
+
+[node name="player" parent="." instance=ExtResource("1_uhwhc")]
+unique_name_in_owner = true
+position = Vector2(159, 111)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+position = Vector2(75, 10)
+
+[node name="Menu UI" type="CanvasLayer" parent="."]
+
+[node name="pause Menu" parent="Menu UI" instance=ExtResource("3_dhkfq")]
+unique_name_in_owner = true
+offset_left = 19.0
+offset_top = 102.0
+offset_right = 19.0
+offset_bottom = 102.0
+
+[editable path="player"]
+[editable path="player/CanvasLayer/Hp bar"]
+[editable path="Menu UI/pause Menu"]

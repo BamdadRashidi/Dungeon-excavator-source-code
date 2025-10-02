@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5dy40jolexyw"]
+
+[ext_resource type="Script" path="res://scenes/armor.gd" id="1_t0cfy"]
+[ext_resource type="Texture2D" uid="uid://b700cdqg4b3a5" path="res://sprites/shield.png" id="2_xjmkq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w0aws"]
+size = Vector2(27, 30)
+
+[node name="armr" type="StaticBody2D"]
+collision_layer = 33
+collision_mask = 9
+script = ExtResource("1_t0cfy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_xjmkq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_w0aws")

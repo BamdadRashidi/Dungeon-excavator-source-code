@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=3 uid="uid://bs6s0uee0avns"]
+
+[ext_resource type="Texture2D" uid="uid://bv8x2jehncmpf" path="res://sprites/meus/sword_equipment.png" id="1_6sip7"]
+[ext_resource type="Script" path="res://scenes/equipment_menu.gd" id="1_8eja1"]
+[ext_resource type="Texture2D" uid="uid://clgvdmswjduwq" path="res://sprites/meus/lanter_equipment.png" id="2_rjwym"]
+[ext_resource type="Texture2D" uid="uid://buccqv5v4bg3j" path="res://sprites/meus/bow_equipment.png" id="3_2ji21"]
+[ext_resource type="Texture2D" uid="uid://c7ngrkqiehsa3" path="res://sprites/meus/Bombs1.png" id="4_7vr6j"]
+[ext_resource type="AudioStream" uid="uid://bfv57nbccwpm4" path="res://audio/UI/menu navigation.wav" id="6_ann6n"]
+[ext_resource type="AudioStream" uid="uid://pgni10tksod6" path="res://audio/UI/item selected.wav" id="7_mjawr"]
+[ext_resource type="FontFile" uid="uid://bal1cl1botd3a" path="res://PixelOperator8-Bold.ttf" id="8_dix66"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b0cgr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wtlv6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vpfvj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nnphg"]
+
+[node name="equipment menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 418.0
+offset_top = 263.0
+offset_right = 418.0
+offset_bottom = 263.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8eja1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -1631.0
+offset_top = -1174.0
+offset_right = -1591.0
+offset_bottom = -1134.0
+scale = Vector2(95.1209, 60.6245)
+color = Color(0.282353, 0.282353, 0.282353, 1)
+
+[node name="info label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = -71.0
+offset_top = -36.0
+offset_right = -70.0
+offset_bottom = -20.0
+theme_override_colors/font_color = Color(0.854902, 0.752941, 0, 1)
+theme_override_fonts/font = ExtResource("8_dix66")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 121.0
+offset_bottom = 21.0
+alignment = 1
+
+[node name="sword" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_b0cgr")
+icon = ExtResource("1_6sip7")
+
+[node name="lantern" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wtlv6")
+icon = ExtResource("2_rjwym")
+
+[node name="bow" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vpfvj")
+icon = ExtResource("3_2ji21")
+
+[node name="bombs" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nnphg")
+icon = ExtResource("4_7vr6j")
+
+[node name="navigation" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_ann6n")
+bus = &"SFX"
+
+[node name="selection" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_mjawr")
+bus = &"SFX"
+
+[connection signal="focus_entered" from="HBoxContainer/sword" to="." method="_on_sword_focus_entered"]
+[connection signal="focus_entered" from="HBoxContainer/lantern" to="." method="_on_lantern_focus_entered"]
+[connection signal="focus_entered" from="HBoxContainer/bow" to="." method="_on_bow_focus_entered"]
+[connection signal="focus_entered" from="HBoxContainer/bombs" to="." method="_on_bombs_focus_entered"]

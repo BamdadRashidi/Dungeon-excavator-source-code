@@ -1,0 +1,166 @@
+[gd_scene load_steps=11 format=3 uid="uid://c8amjq2y2rtnx"]
+
+[ext_resource type="Texture2D" uid="uid://bg3m1m326xn65" path="res://sprites/gfx/objects.png" id="1_hd3kb"]
+[ext_resource type="Script" path="res://scenes/lever.gd" id="1_sx7o5"]
+[ext_resource type="Texture2D" uid="uid://b8uiutconvvoi" path="res://sprites/lock block.png" id="3_k7pml"]
+[ext_resource type="AudioStream" uid="uid://oxbknosu17o3" path="res://audio/Player and items/switch on.ogg" id="4_0rfl2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xotuy"]
+size = Vector2(45, 52)
+
+[sub_resource type="Animation" id="Animation_mn8xl"]
+resource_name = "off"
+
+[sub_resource type="Animation" id="Animation_psijv"]
+resource_name = "on"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("door 1/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("door 2/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.02),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("door 1/Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.02),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("door 2/Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.02),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("on sound:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hqu7k"]
+_data = {
+"off": SubResource("Animation_mn8xl"),
+"on": SubResource("Animation_psijv")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbox3"]
+size = Vector2(203, 206)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ie401"]
+size = Vector2(46, 55)
+
+[node name="lever" type="CharacterBody2D"]
+scale = Vector2(0.4, 0.4)
+collision_layer = 2
+script = ExtResource("1_sx7o5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_xotuy")
+
+[node name="off" type="Sprite2D" parent="."]
+position = Vector2(-1, 1.5)
+scale = Vector2(3.38462, 3.78571)
+texture = ExtResource("1_hd3kb")
+region_enabled = true
+region_rect = Rect2(0, 128.844, 13.6419, 14.156)
+
+[node name="on" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-1, 1.5)
+scale = Vector2(3.38462, 3.78571)
+texture = ExtResource("1_hd3kb")
+region_enabled = true
+region_rect = Rect2(16.3094, 129.211, 14.0197, 13.7887)
+
+[node name="system" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hqu7k")
+}
+
+[node name="door 1" type="StaticBody2D" parent="."]
+position = Vector2(-295, -96)
+scale = Vector2(0.320001, 0.32)
+
+[node name="Sprite2D" type="Sprite2D" parent="door 1"]
+position = Vector2(92, 93)
+scale = Vector2(4.04, 4.12)
+texture = ExtResource("3_k7pml")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="door 1"]
+position = Vector2(91.5, 93)
+shape = SubResource("RectangleShape2D_vbox3")
+
+[node name="door 2" type="StaticBody2D" parent="."]
+position = Vector2(58, -165)
+scale = Vector2(0.35224, 0.356144)
+
+[node name="Sprite2D" type="Sprite2D" parent="door 2"]
+position = Vector2(92, 93)
+scale = Vector2(4.04, 4.12)
+texture = ExtResource("3_k7pml")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="door 2"]
+position = Vector2(91.5, 93)
+shape = SubResource("RectangleShape2D_vbox3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_ie401")
+
+[node name="on sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_0rfl2")
+volume_db = 6.0
+bus = &"SFX"

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://buiakl0y30wog"]
+
+[ext_resource type="AudioStream" uid="uid://cyqhe6h76tf34" path="res://audio/cave song for real this time.mp3" id="1_x7oh7"]
+
+[node name="music_player" type="AudioStreamPlayer2D"]
+process_mode = 3
+stream = ExtResource("1_x7oh7")
+autoplay = true
+max_distance = 1e+14
+panning_strength = 0.0
+bus = &"Music"

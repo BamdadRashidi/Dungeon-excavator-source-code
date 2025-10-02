@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfgq88ndm1lcj"]
+
+[ext_resource type="Script" path="res://scenes/camera_set_boundaries.gd" id="1_jj36q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qsmko"]
+size = Vector2(658, 356)
+
+[node name="camera_set_boundaries" type="Area2D"]
+collision_mask = 128
+script = ExtResource("1_jj36q")
+
+[node name="collider" type="CollisionShape2D" parent="."]
+position = Vector2(112, 87)
+shape = SubResource("RectangleShape2D_qsmko")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

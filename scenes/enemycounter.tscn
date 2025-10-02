@@ -1,0 +1,191 @@
+[gd_scene load_steps=8 format=3 uid="uid://dhnuc03jhyvgg"]
+
+[ext_resource type="Script" path="res://scenes/enemycounter.gd" id="1_1evh3"]
+[ext_resource type="Texture2D" uid="uid://b8uiutconvvoi" path="res://sprites/lock block.png" id="2_a6bih"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4be4q"]
+size = Vector2(55, 55)
+
+[sub_resource type="Animation" id="Animation_7yjg5"]
+resource_name = "open the gates"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shutted door/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shutted door2/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shutted door/Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("shutted door2/Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"whatinthefuck"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ju00w"]
+resource_name = "shut the gates"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shutted door/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shutted door2/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shutted door2/Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("shutted door/Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Area2D:monitoring")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nsuxp"]
+_data = {
+"open the gates": SubResource("Animation_7yjg5"),
+"shut the gates": SubResource("Animation_ju00w")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_axyou"]
+size = Vector2(20, 119)
+
+[node name="enemycounter" type="Area2D"]
+collision_mask = 10
+script = ExtResource("1_1evh3")
+
+[node name="shutted door" type="StaticBody2D" parent="."]
+position = Vector2(-138, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shutted door"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_4be4q")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="shutted door"]
+visible = false
+texture = ExtResource("2_a6bih")
+
+[node name="shutted door2" type="StaticBody2D" parent="."]
+position = Vector2(-137, 76)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shutted door2"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_4be4q")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="shutted door2"]
+visible = false
+texture = ExtResource("2_a6bih")
+
+[node name="locker animatoer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nsuxp")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(99, -1)
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_axyou")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

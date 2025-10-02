@@ -1,0 +1,248 @@
+[gd_scene load_steps=19 format=3 uid="uid://c5d12xx8pyl3n"]
+
+[ext_resource type="Script" path="res://scenes/bombs.gd" id="1_xhlpa"]
+[ext_resource type="AudioStream" uid="uid://webpis1u2byr" path="res://audio/Player and items/explosion.wav" id="2_21w38"]
+[ext_resource type="Texture2D" uid="uid://br6lkn6eie5ow" path="res://sprites/bombspritesheet.png" id="3_kaicv"]
+[ext_resource type="Texture2D" uid="uid://cafwdlolqe0x6" path="res://sprites/explosionspritesheet.png" id="4_0s4j6"]
+[ext_resource type="Texture2D" uid="uid://df6jk05ixdd4y" path="res://sprites/light better.png" id="5_w6bm7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pw2j1"]
+radius = 23.0
+
+[sub_resource type="Animation" id="Animation_q7jp2"]
+resource_name = "Hello donetsk children it's 5 billion rockets boom!"
+length = 1.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(4, 4)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("explo:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.22883, 1.38214), Vector2(3, 3.374)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("explo:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PointLight2D:texture_scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.01, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.5, 2.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PointLight2D:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.01, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shake"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_8s5ih"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_upc4l"]
+_data = {
+"Hello donetsk children it's 5 billion rockets boom!": SubResource("Animation_q7jp2"),
+"RESET": SubResource("Animation_8s5ih")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwmqu"]
+atlas = ExtResource("4_0s4j6")
+region = Rect2(0, 0, 109, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_165fi"]
+atlas = ExtResource("4_0s4j6")
+region = Rect2(109, 0, 109, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0etw"]
+atlas = ExtResource("4_0s4j6")
+region = Rect2(218, 0, 109, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m7eel"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwmqu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_165fi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0etw")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtx3n"]
+atlas = ExtResource("3_kaicv")
+region = Rect2(29, 0, 29, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whqmt"]
+atlas = ExtResource("3_kaicv")
+region = Rect2(58, 0, 29, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_optnh"]
+atlas = ExtResource("3_kaicv")
+region = Rect2(87, 0, 29, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erb1y"]
+atlas = ExtResource("3_kaicv")
+region = Rect2(0, 0, 29, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8obvw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtx3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whqmt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_optnh")
+}],
+"loop": true,
+"name": &"HELLO DONETSK CHILDREN  IT\'S 5 BILLION ROCKETS BOOM!!!!",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erb1y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="bombs" type="Area2D"]
+collision_mask = 10
+monitoring = false
+monitorable = false
+script = ExtResource("1_xhlpa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pw2j1")
+debug_color = Color(0.945098, 0.239216, 0, 0.419608)
+
+[node name="bombtimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_upc4l")
+}
+
+[node name="explosion sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_21w38")
+volume_db = 8.0
+panning_strength = 0.0
+bus = &"SFX"
+
+[node name="explo" type="AnimatedSprite2D" parent="."]
+position = Vector2(6, 18)
+rotation = 1.5708
+scale = Vector2(1.22883, 1.38214)
+sprite_frames = SubResource("SpriteFrames_m7eel")
+animation = &"explosion"
+frame = 1
+frame_progress = 0.352889
+
+[node name="boomanim" type="AnimatedSprite2D" parent="."]
+position = Vector2(7.62939e-06, -3.8147e-06)
+scale = Vector2(0.720002, 0.658)
+sprite_frames = SubResource("SpriteFrames_8obvw")
+animation = &"HELLO DONETSK CHILDREN  IT\'S 5 BILLION ROCKETS BOOM!!!!"
+
+[node name="beforeboom" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+color = Color(1, 0.545098, 0.27451, 1)
+texture = ExtResource("5_w6bm7")
+texture_scale = 0.5
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="bombtimer" to="." method="_on_bombtimer_timeout"]
+[connection signal="timeout" from="beforeboom" to="." method="_on_beforeboom_timeout"]

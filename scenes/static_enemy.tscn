@@ -1,0 +1,285 @@
+[gd_scene load_steps=23 format=3 uid="uid://css5jyqm6wji"]
+
+[ext_resource type="Script" path="res://scenes/static_enemy.gd" id="1_saehr"]
+[ext_resource type="Texture2D" uid="uid://dck3yofbrlhtw" path="res://sprites/bat.png" id="2_1w18v"]
+[ext_resource type="Shader" uid="uid://ifjco2a6qg83" path="res://scenes/batshader.tres" id="2_ssdxn"]
+[ext_resource type="AudioStream" uid="uid://b6xng847kgcnj" path="res://audio/Player and items/bat sound.wav" id="3_ggurp"]
+[ext_resource type="AudioStream" uid="uid://ccso6vbhal1ia" path="res://audio/Player and items/enemy hurt.ogg" id="4_k0j32"]
+[ext_resource type="AudioStream" uid="uid://coyyiltrwa1jh" path="res://audio/Player and items/flapping sound (needs to loop every x seconds).ogg" id="5_nxe8r"]
+[ext_resource type="Texture2D" uid="uid://df6jk05ixdd4y" path="res://sprites/light better.png" id="7_hx8x1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_djlla"]
+radius = 140.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3t04g"]
+shader = ExtResource("2_ssdxn")
+shader_parameter/wizbool = false
+shader_parameter/projectile_enem_color = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryek6"]
+atlas = ExtResource("2_1w18v")
+region = Rect2(30, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sy016"]
+atlas = ExtResource("2_1w18v")
+region = Rect2(60, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_citv0"]
+atlas = ExtResource("2_1w18v")
+region = Rect2(0, 0, 30, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1wtyc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryek6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sy016")
+}],
+"loop": true,
+"name": &"BAT_ATTACK",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_citv0")
+}],
+"loop": true,
+"name": &"bat_idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7udf0"]
+size = Vector2(16.25, 10)
+
+[sub_resource type="Animation" id="Animation_dmpm7"]
+resource_name = "batded"
+step = 0.01
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"ded"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("enemycollider:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"summonparticles"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("flapsound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sight:monitoring")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.02),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PointLight2D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.02),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_1112j"]
+resource_name = "flapping"
+length = 0.4
+step = 0.03
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flapsound:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dbetp"]
+_data = {
+"batded": SubResource("Animation_dmpm7"),
+"flapping": SubResource("Animation_1112j")
+}
+
+[sub_resource type="Animation" id="Animation_0nv1e"]
+resource_name = "batsound"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flapsound:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jv0fq"]
+_data = {
+"batsound": SubResource("Animation_0nv1e")
+}
+
+[sub_resource type="Animation" id="Animation_8ypei"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("batanim:material:shader_parameter/wizbool")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_xcg3p"]
+resource_name = "batflash"
+length = 0.2
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("batanim:material:shader_parameter/wizbool")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5lvwo"]
+_data = {
+"RESET": SubResource("Animation_8ypei"),
+"batflash": SubResource("Animation_xcg3p")
+}
+
+[node name="follower" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_saehr")
+
+[node name="sight" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sight"]
+shape = SubResource("CircleShape2D_djlla")
+
+[node name="batanim" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_3t04g")
+position = Vector2(0.5, 8.58307e-07)
+scale = Vector2(0.633333, 0.6)
+sprite_frames = SubResource("SpriteFrames_1wtyc")
+animation = &"BAT_ATTACK"
+frame = 1
+frame_progress = 0.448048
+
+[node name="enemycollider" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+scale = Vector2(0.799999, 1)
+shape = SubResource("RectangleShape2D_7udf0")
+debug_color = Color(0.12549, 0.647059, 0, 0.419608)
+
+[node name="batsound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ggurp")
+volume_db = 0.6
+bus = &"SFX"
+
+[node name="batanim2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dbetp")
+}
+
+[node name="batdamdam" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_k0j32")
+volume_db = -0.3
+bus = &"SFX"
+
+[node name="flapsound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_nxe8r")
+volume_db = 0.8
+bus = &"SFX"
+
+[node name="batshit" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jv0fq")
+}
+
+[node name="batflash" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5lvwo")
+}
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(1.08594, 1.08594)
+energy = 0.1
+texture = ExtResource("7_hx8x1")
+texture_scale = 0.1
+
+[connection signal="body_entered" from="sight" to="." method="_on_sight_body_entered"]
+[connection signal="body_exited" from="sight" to="." method="_on_sight_body_exited"]
+[connection signal="finished" from="flapsound" to="." method="_on_flapsound_finished"]

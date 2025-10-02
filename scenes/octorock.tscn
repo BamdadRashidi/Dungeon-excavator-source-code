@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://caom80uwmrx3i"]
+
+[ext_resource type="Script" path="res://scenes/octorock.gd" id="1_msqmo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_us55u"]
+size = Vector2(32, 29)
+
+[node name="octorock" type="CharacterBody2D"]
+position = Vector2(519, 227)
+collision_layer = 2
+script = ExtResource("1_msqmo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_us55u")
+
+[node name="walktime" type="Timer" parent="."]
+wait_time = 9.0
+one_shot = true
+
+[node name="octotime" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="walktime" to="." method="_on_walktime_timeout"]
+[connection signal="timeout" from="octotime" to="." method="_on_octotime_timeout"]

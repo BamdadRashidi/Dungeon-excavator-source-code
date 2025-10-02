@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2266h0g8o581"]
+
+[ext_resource type="Script" path="res://scenes/damagehitbox(for player).gd" id="1_otbh4"]
+[ext_resource type="AudioStream" uid="uid://cksewh2oifwwb" path="res://audio/Player and items/metal cling.ogg" id="2_tf8uu"]
+
+[node name="Area2D" type="Area2D"]
+collision_mask = 34
+monitoring = false
+script = ExtResource("1_otbh4")
+
+[node name="cling" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_tf8uu")
+volume_db = 1.0
+bus = &"SFX"
+area_mask = 33
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

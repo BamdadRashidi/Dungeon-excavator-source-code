@@ -1,0 +1,118 @@
+[gd_scene load_steps=14 format=3 uid="uid://b7ddxo07ldake"]
+
+[ext_resource type="Texture2D" uid="uid://2kwvvldqxcwr" path="res://sprites/torch.png" id="1_fibor"]
+[ext_resource type="Script" path="res://scenes/Torch.gd" id="1_l43ky"]
+[ext_resource type="AudioStream" uid="uid://bfy8dyelndk8j" path="res://audio/Player and items/torch-LIT.ogg" id="3_sk3yo"]
+[ext_resource type="Texture2D" uid="uid://df6jk05ixdd4y" path="res://sprites/light better.png" id="4_gkb47"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nnjc"]
+atlas = ExtResource("1_fibor")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drmck"]
+atlas = ExtResource("1_fibor")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mt3j"]
+atlas = ExtResource("1_fibor")
+region = Rect2(100, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bscmo"]
+atlas = ExtResource("1_fibor")
+region = Rect2(150, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pkrr"]
+atlas = ExtResource("1_fibor")
+region = Rect2(200, 0, 50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3wptg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nnjc")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drmck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mt3j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bscmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pkrr")
+}],
+"loop": true,
+"name": &"on",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dks2w"]
+size = Vector2(17.5, 17.5)
+
+[sub_resource type="Animation" id="Animation_evta1"]
+resource_name = "torchaudio"
+length = 36.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("torchsound:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 34.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f7l7s"]
+_data = {
+"torchaudio": SubResource("Animation_evta1")
+}
+
+[node name="torch" type="CharacterBody2D"]
+collision_layer = 5
+collision_mask = 64
+script = ExtResource("1_l43ky")
+
+[node name="torch_anim" type="AnimatedSprite2D" parent="."]
+position = Vector2(3.23438, -1)
+scale = Vector2(0.550625, 0.48)
+sprite_frames = SubResource("SpriteFrames_3wptg")
+animation = &"on"
+autoplay = "off"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 2)
+shape = SubResource("RectangleShape2D_dks2w")
+debug_color = Color(0.580392, 0.54902, 0.0627451, 0.419608)
+
+[node name="torchsound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_sk3yo")
+volume_db = -7.0
+max_distance = 1200.0
+panning_strength = 0.0
+bus = &"SFX"
+
+[node name="torchsoun d" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f7l7s")
+}
+
+[node name="torchlight" type="PointLight2D" parent="."]
+color = Color(0.807843, 0.517647, 0, 1)
+energy = 0.8
+texture = ExtResource("4_gkb47")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.733333, 0.733333, 0.733333, 1)
+energy = 0.2
+texture = ExtResource("4_gkb47")
+texture_scale = 0.4

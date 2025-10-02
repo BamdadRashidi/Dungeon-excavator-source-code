@@ -1,0 +1,228 @@
+[gd_scene load_steps=22 format=3 uid="uid://cmkxq8ypx0jc0"]
+
+[ext_resource type="FontFile" uid="uid://bal1cl1botd3a" path="res://PixelOperator8-Bold.ttf" id="1_hv22p"]
+[ext_resource type="Script" path="res://scenes/pause_menu.gd" id="1_mw7o3"]
+[ext_resource type="Texture2D" uid="uid://clgvdmswjduwq" path="res://sprites/meus/lanter_equipment.png" id="3_d3ef5"]
+[ext_resource type="AudioStream" uid="uid://bfv57nbccwpm4" path="res://audio/UI/menu navigation.wav" id="3_vo1gr"]
+[ext_resource type="Texture2D" uid="uid://buccqv5v4bg3j" path="res://sprites/meus/bow_equipment.png" id="4_1u82e"]
+[ext_resource type="AudioStream" uid="uid://pgni10tksod6" path="res://audio/UI/item selected.wav" id="4_pt17a"]
+[ext_resource type="Texture2D" uid="uid://c7ngrkqiehsa3" path="res://sprites/meus/Bombs1.png" id="5_oc83y"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xqnx8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6qclo"]
+bg_color = Color(0.92549, 0.74902, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x7r2v"]
+bg_color = Color(0.670588, 0, 0.235294, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f7ys7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8pshu"]
+bg_color = Color(0.87451, 0.705882, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8s1ti"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erjmw"]
+bg_color = Color(0.898039, 0.690196, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ix4xv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fy4ed"]
+bg_color = Color(0.898039, 0.694118, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uiqjf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ypkia"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fyfhm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_75dsm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iio7m"]
+bg_color = Color(0.862745, 0.733333, 0.133333, 1)
+
+[node name="pause Menu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -88.0
+offset_right = -16.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mw7o3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+anchor_left = -0.036
+anchor_top = -0.051
+offset_left = 216.472
+offset_top = 193.048
+offset_right = 1002.0
+offset_bottom = 527.0
+color = Color(0.262745, 0.262745, 0.262745, 0.364706)
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 305.0
+offset_top = 293.0
+offset_right = 833.0
+offset_bottom = 389.0
+theme_override_constants/separation = 50
+
+[node name="pause buttons" type="HBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="continue" type="Button" parent="VBoxContainer2/pause buttons"]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_xqnx8")
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_hv22p")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/hover = SubResource("StyleBoxFlat_6qclo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x7r2v")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f7ys7")
+text = "Continue"
+
+[node name="save" type="Button" parent="VBoxContainer2/pause buttons"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_hv22p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8pshu")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8s1ti")
+text = "save game"
+
+[node name="settings" type="Button" parent="VBoxContainer2/pause buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_hv22p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_erjmw")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ix4xv")
+text = "settings"
+
+[node name="quit" type="Button" parent="VBoxContainer2/pause buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_hv22p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fy4ed")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uiqjf")
+text = "main menu"
+
+[node name="equipment buttons" type="HBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="lantern" type="Button" parent="VBoxContainer2/equipment buttons"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ypkia")
+icon = ExtResource("3_d3ef5")
+
+[node name="bow" type="Button" parent="VBoxContainer2/equipment buttons"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fyfhm")
+icon = ExtResource("4_1u82e")
+
+[node name="bomb" type="Button" parent="VBoxContainer2/equipment buttons"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_75dsm")
+icon = ExtResource("5_oc83y")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 533.0
+offset_top = 257.0
+offset_right = 679.0
+offset_bottom = 273.0
+theme_override_fonts/font = ExtResource("1_hv22p")
+text = "Paused"
+
+[node name="navigation" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_vo1gr")
+volume_db = -0.3
+bus = &"SFX"
+
+[node name="select" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_pt17a")
+volume_db = -0.3
+bus = &"SFX"
+
+[node name="audio_container" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 303.0
+offset_top = 286.0
+offset_right = 860.0
+offset_bottom = 415.0
+theme_override_constants/separation = 45
+
+[node name="Music" type="HSlider" parent="audio_container"]
+layout_mode = 2
+min_value = -30.0
+max_value = 30.0
+
+[node name="Label" type="Label" parent="audio_container/Music"]
+layout_mode = 0
+offset_top = 20.0
+offset_right = 78.0
+offset_bottom = 43.0
+theme_override_fonts/font = ExtResource("1_hv22p")
+text = "Music"
+
+[node name="SFX" type="HSlider" parent="audio_container"]
+layout_mode = 2
+min_value = -30.0
+max_value = 30.0
+
+[node name="Label2" type="Label" parent="audio_container/SFX"]
+layout_mode = 0
+offset_top = 21.0
+offset_right = 78.0
+offset_bottom = 44.0
+theme_override_fonts/font = ExtResource("1_hv22p")
+text = "SFX"
+
+[node name="Master" type="HSlider" parent="audio_container"]
+layout_mode = 2
+min_value = -30.0
+max_value = 30.0
+
+[node name="Label3" type="Label" parent="audio_container/Master"]
+layout_mode = 0
+offset_top = 19.0
+offset_right = 96.0
+offset_bottom = 42.0
+theme_override_fonts/font = ExtResource("1_hv22p")
+text = "Master"
+
+[node name="Button" type="Button" parent="audio_container"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_hv22p")
+theme_override_styles/normal = SubResource("StyleBoxFlat_iio7m")
+text = "Back"
+
+[connection signal="focus_entered" from="VBoxContainer2/pause buttons/continue" to="." method="_on_continue_focus_entered"]
+[connection signal="mouse_entered" from="VBoxContainer2/pause buttons/continue" to="." method="_on_continue_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer2/pause buttons/continue" to="." method="_on_continue_pressed"]
+[connection signal="focus_entered" from="VBoxContainer2/pause buttons/save" to="." method="_on_save_focus_entered"]
+[connection signal="mouse_entered" from="VBoxContainer2/pause buttons/save" to="." method="_on_save_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer2/pause buttons/save" to="." method="_on_save_pressed"]
+[connection signal="focus_entered" from="VBoxContainer2/pause buttons/settings" to="." method="_on_settings_focus_entered"]
+[connection signal="mouse_entered" from="VBoxContainer2/pause buttons/settings" to="." method="_on_settings_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer2/pause buttons/settings" to="." method="_on_settings_pressed"]
+[connection signal="focus_entered" from="VBoxContainer2/pause buttons/quit" to="." method="_on_quit_focus_entered"]
+[connection signal="mouse_entered" from="VBoxContainer2/pause buttons/quit" to="." method="_on_quit_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer2/pause buttons/quit" to="." method="_on_quit_pressed"]
+[connection signal="focus_entered" from="VBoxContainer2/equipment buttons/lantern" to="." method="_on_lantern_focus_entered"]
+[connection signal="pressed" from="VBoxContainer2/equipment buttons/lantern" to="." method="_on_lantern_pressed"]
+[connection signal="focus_entered" from="VBoxContainer2/equipment buttons/bow" to="." method="_on_bow_focus_entered"]
+[connection signal="pressed" from="VBoxContainer2/equipment buttons/bow" to="." method="_on_bow_pressed"]
+[connection signal="focus_entered" from="VBoxContainer2/equipment buttons/bomb" to="." method="_on_bomb_focus_entered"]
+[connection signal="pressed" from="VBoxContainer2/equipment buttons/bomb" to="." method="_on_bomb_pressed"]
+[connection signal="value_changed" from="audio_container/Music" to="." method="_on_music_value_changed"]
+[connection signal="value_changed" from="audio_container/SFX" to="." method="_on_sfx_value_changed"]
+[connection signal="value_changed" from="audio_container/Master" to="." method="_on_master_value_changed"]
+[connection signal="pressed" from="audio_container/Button" to="." method="_on_button_pressed"]

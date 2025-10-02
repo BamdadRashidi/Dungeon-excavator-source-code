@@ -1,0 +1,69 @@
+[gd_scene load_steps=4 format=3 uid="uid://dl2w6fsq86032"]
+
+[ext_resource type="Script" path="res://scenes/winning_scene.gd" id="1_pdq3q"]
+[ext_resource type="FontFile" uid="uid://bal1cl1botd3a" path="res://PixelOperator8-Bold.ttf" id="1_qo8os"]
+[ext_resource type="AudioStream" uid="uid://c8yueylxsebke" path="res://audio/victory jingle.ogg" id="2_v74d2"]
+
+[node name="winning scene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pdq3q")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 148.0
+offset_right = 1132.0
+offset_bottom = 353.0
+theme_override_fonts/font = ExtResource("1_qo8os")
+text = "                                                          YIPPIE !!!!!!!
+YOU DID IT!!
+YOU WON THE GAME?!
+YOU WASTED SOME PRECIOUS MINUETS OF YOUR LIFE THAT WILL NOT COME BACK!
+WAHOO!!!!!!!!!!
+FANTASTIC JOB M8!!!!!!
+<3<3<3<3<3<3<3<3<3<3<3
+WE LUB YOU!!!!!!!!!
+for the time being, enjoy this lame ass victory screen
+P.S.: Jokes aside, please explain your experience and give it a score out of 10"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_v74d2")
+volume_db = 6.0
+autoplay = true
+bus = &"Music"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 250
+lifetime = 10.0
+speed_scale = 0.7
+randomness = 0.1
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(5000, 3000)
+spread = 60.0
+gravity = Vector2(-100, 1000)
+initial_velocity_min = 0.1
+initial_velocity_max = 5.0
+scale_amount_min = 10.0
+scale_amount_max = 21.0
+color = Color(1, 1, 0.223529, 0.835294)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+anim_speed_min = 0.6
+anim_speed_max = 6.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 492.0
+offset_right = 518.0
+offset_bottom = 500.0
+theme_override_fonts/font = ExtResource("1_qo8os")
+text = "Main menu"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,129 @@
+[gd_scene load_steps=8 format=3 uid="uid://beuje2bkkgsuw"]
+
+[ext_resource type="Script" path="res://scenes/arrow.gd" id="1_0lves"]
+[ext_resource type="Texture2D" uid="uid://w8pj3xthkcwg" path="res://sprites/arrow.png" id="2_461q5"]
+[ext_resource type="Script" path="res://scenes/arrowhitbox.gd" id="4_5ijey"]
+[ext_resource type="AudioStream" uid="uid://dllredwhwsg15" path="res://audio/Player and items/arrowimpact.wav" id="4_nn3fr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_juwo4"]
+radius = 2.0
+height = 8.0
+
+[sub_resource type="Animation" id="Animation_3ki22"]
+resource_name = "arrowdednotbigsurpirse"
+length = 0.5
+step = 0.01
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.17),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"summonparticle"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("verti_arrowsprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("horiz_arrowsprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("arrowouch:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("bowhitbox/arrowcollider2:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.01),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_15cjf"]
+_data = {
+"arrowdednotbigsurpirse": SubResource("Animation_3ki22")
+}
+
+[node name="arrow" type="Node2D"]
+script = ExtResource("1_0lves")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="verti_arrowsprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, 1)
+rotation = 1.5708
+scale = Vector2(0.178571, 0.192857)
+texture = ExtResource("2_461q5")
+
+[node name="horiz_arrowsprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, 1)
+scale = Vector2(0.178571, 0.192857)
+texture = ExtResource("2_461q5")
+
+[node name="bowhitbox" type="Area2D" parent="."]
+collision_mask = 34
+script = ExtResource("4_5ijey")
+
+[node name="arrowcollider2" type="CollisionShape2D" parent="bowhitbox"]
+position = Vector2(1, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_juwo4")
+
+[node name="arrowouch" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_nn3fr")
+volume_db = 1.0
+panning_strength = 0.0
+bus = &"SFX"
+
+[node name="arrowplayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_15cjf")
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="bowhitbox" to="bowhitbox" method="_on_body_entered"]

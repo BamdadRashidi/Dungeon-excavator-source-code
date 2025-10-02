@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://uyplsn4dbtmy"]
+
+[ext_resource type="Script" path="res://scenes/smog.gd" id="1_htori"]
+[ext_resource type="Script" path="res://scenes/Smogbutton.gd" id="2_5xy3y"]
+[ext_resource type="Texture2D" uid="uid://dovhtqo42edm6" path="res://sprites/smog particle.png" id="3_7bd3p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8ka8"]
+size = Vector2(500, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ffejh"]
+
+[sub_resource type="Gradient" id="Gradient_e8oc4"]
+offsets = PackedFloat32Array(0, 0.754967)
+colors = PackedColorArray(0, 0.165658, 0.85822, 1, 1, 1, 1, 1)
+
+[node name="smog" type="Area2D"]
+collision_mask = 8
+script = ExtResource("1_htori")
+
+[node name="smogcolli" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p8ka8")
+
+[node name="smogtimer" type="Timer" parent="."]
+wait_time = 0.75
+one_shot = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="staticcolli" type="CollisionShape2D" parent="StaticBody2D"]
+
+[node name="Smogbutton" type="CharacterBody2D" parent="."]
+collision_layer = 2
+script = ExtResource("2_5xy3y")
+
+[node name="buttoncolli" type="CollisionShape2D" parent="Smogbutton"]
+shape = SubResource("RectangleShape2D_ffejh")
+
+[node name="parties" type="CPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.807843)
+amount = 100
+speed_scale = 0.5
+explosiveness = 0.02
+randomness = 0.08
+texture = ExtResource("3_7bd3p")
+emission_shape = 3
+emission_rect_extents = Vector2(230, 90)
+spread = 20.0
+gravity = Vector2(-5, 100)
+linear_accel_min = -5.0
+linear_accel_max = 10.0
+scale_amount_max = 1.25
+color = Color(1, 0.85098, 1, 1)
+color_ramp = SubResource("Gradient_e8oc4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="smogtimer" to="." method="_on_smogtimer_timeout"]

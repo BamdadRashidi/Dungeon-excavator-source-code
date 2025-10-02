@@ -1,0 +1,95 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlmeugah7gq8f"]
+
+[ext_resource type="Script" path="res://scenes/lockeddoor.gd" id="1_iu03f"]
+[ext_resource type="Texture2D" uid="uid://ccnnf118hc7d3" path="res://sprites/locked block.png" id="1_kxt6j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f43fa"]
+size = Vector2(53, 53)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2tnq"]
+size = Vector2(76, 77)
+
+[sub_resource type="Animation" id="Animation_w862g"]
+resource_name = "unlock_sesame"
+step = 0.005
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("interractable_space/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.005),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o8k4j"]
+_data = {
+"unlock_sesame": SubResource("Animation_w862g")
+}
+
+[node name="lockeddoor" type="StaticBody2D"]
+collision_mask = 8
+script = ExtResource("1_iu03f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_f43fa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kxt6j")
+
+[node name="interractable_space" type="Area2D" parent="."]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interractable_space"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_c2tnq")
+
+[node name="animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_o8k4j")
+}
+
+[connection signal="body_entered" from="interractable_space" to="." method="_on_interractable_space_body_entered"]
+[connection signal="body_exited" from="interractable_space" to="." method="_on_interractable_space_body_exited"]

@@ -1,0 +1,98 @@
+[gd_scene load_steps=10 format=3 uid="uid://p5nha4tj2lej"]
+
+[ext_resource type="Texture2D" uid="uid://bg3m1m326xn65" path="res://sprites/gfx/objects.png" id="1_b3vsw"]
+[ext_resource type="Script" path="res://scenes/sign.gd" id="1_cnr3w"]
+[ext_resource type="FontFile" uid="uid://bal1cl1botd3a" path="res://PixelOperator8-Bold.ttf" id="3_3wxoi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3jo7t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c5wqg"]
+radius = 55.0364
+
+[sub_resource type="Animation" id="Animation_y0308"]
+resource_name = "appeart"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_b3jkw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_oslju"]
+resource_name = "disappeart"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lxx3e"]
+_data = {
+"RESET": SubResource("Animation_b3jkw"),
+"appeart": SubResource("Animation_y0308"),
+"disappeart": SubResource("Animation_oslju")
+}
+
+[node name="sign" type="StaticBody2D"]
+script = ExtResource("1_cnr3w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3jo7t")
+
+[node name="book" type="Sprite2D" parent="."]
+position = Vector2(3.57628e-07, -4.76837e-07)
+scale = Vector2(1.25, 1.66667)
+texture = ExtResource("1_b3vsw")
+region_enabled = true
+region_rect = Rect2(303.812, 2.98982, 16.2835, 12.9789)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_c5wqg")
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = 453.0
+offset_top = 44.0
+offset_right = 493.0
+offset_bottom = 67.0
+theme_override_fonts/font = ExtResource("3_3wxoi")
+text = "Deez nuts"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lxx3e")
+}
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -1,0 +1,202 @@
+[gd_scene load_steps=10 format=3 uid="uid://bh2pg2hxvpskg"]
+
+[ext_resource type="FontFile" uid="uid://bal1cl1botd3a" path="res://PixelOperator8-Bold.ttf" id="1_saq0g"]
+[ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_vh8dk"]
+[ext_resource type="AudioStream" uid="uid://bfv57nbccwpm4" path="res://audio/UI/menu navigation.wav" id="3_8vpgs"]
+[ext_resource type="AudioStream" uid="uid://pgni10tksod6" path="res://audio/UI/item selected.wav" id="4_n4mwo"]
+[ext_resource type="AudioStream" uid="uid://dyetc1c25no1p" path="res://audio/cave song for settings.mp3" id="5_ghaku"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_neb1c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ss66m"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6qrh6"]
+bg_color = Color(0.8, 0.623529, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dos7j"]
+bg_color = Color(0.807843, 0.619608, 0, 1)
+
+[node name="main_menu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vh8dk")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_right = 1153.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("1_saq0g")
+theme_override_font_sizes/font_size = 35
+text = "Dungeon excavanger"
+horizontal_alignment = 1
+
+[node name="main_menu_vbox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.998
+offset_top = 58.0
+offset_right = 1.0
+offset_bottom = 0.295959
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+
+[node name="Play" type="Button" parent="main_menu_vbox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_saq0g")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_neb1c")
+text = "Start game"
+
+[node name="settings" type="Button" parent="main_menu_vbox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_saq0g")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_neb1c")
+text = "Settings and credits"
+
+[node name="HTP" type="Button" parent="main_menu_vbox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_saq0g")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ss66m")
+text = "How to play"
+
+[node name="quit" type="Button" parent="main_menu_vbox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_saq0g")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_neb1c")
+text = "Quit Game"
+
+[node name="naviagate" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_8vpgs")
+volume_db = -0.3
+bus = &"SFX"
+
+[node name="confirm" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_n4mwo")
+volume_db = 3.0
+bus = &"SFX"
+
+[node name="settings_Vbox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.083
+anchor_right = 0.998
+anchor_bottom = 1.0
+offset_top = 0.216003
+offset_right = 0.303955
+offset_bottom = -301.0
+theme_override_constants/separation = 45
+alignment = 1
+
+[node name="Music" type="HSlider" parent="settings_Vbox"]
+layout_mode = 2
+min_value = -30.0
+max_value = 30.0
+
+[node name="Label" type="Label" parent="settings_Vbox/Music"]
+layout_mode = 0
+offset_top = -30.0
+offset_right = 46.0
+offset_bottom = -7.0
+theme_override_fonts/font = ExtResource("1_saq0g")
+text = "Music
+"
+
+[node name="SFX" type="HSlider" parent="settings_Vbox"]
+layout_mode = 2
+min_value = -30.0
+max_value = 30.0
+
+[node name="Label2" type="Label" parent="settings_Vbox/SFX"]
+layout_mode = 0
+offset_top = -26.0
+offset_right = 78.0
+offset_bottom = -3.0
+theme_override_fonts/font = ExtResource("1_saq0g")
+text = "Sfx
+"
+
+[node name="Master" type="HSlider" parent="settings_Vbox"]
+layout_mode = 2
+min_value = -30.0
+max_value = 30.0
+
+[node name="Label2" type="Label" parent="settings_Vbox/Master"]
+layout_mode = 0
+offset_top = -26.0
+offset_right = 78.0
+offset_bottom = -3.0
+theme_override_fonts/font = ExtResource("1_saq0g")
+text = "Master"
+
+[node name="Label" type="Label" parent="settings_Vbox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_saq0g")
+text = "Programming: Bamdad
+Writing: Bamdad
+game design: Bamdad
+Music: Bamdad
+Sound design: Bamdad, stock audio i had in the computer and the sound designer of 
+PVZ 1 for the squash sound
+Art and animation: if it looks Ass it's done by Bamdad
+otherwise i took the art from someone's asset pack (shoutouts to that person)
+Lighting: Bamdad
+shoutouts to those braincells of mine who died on this journey
+shoutouts to my bois and gorls
+shoutouts to me parents
+made with GODOT (fucking amazing engine by the way)"
+
+[node name="Button" type="Button" parent="settings_Vbox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_saq0g")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6qrh6")
+text = "Back"
+
+[node name="cave sample" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ghaku")
+bus = &"Music"
+
+[node name="bacc" type="Button" parent="."]
+layout_mode = 0
+offset_left = 534.0
+offset_top = 410.0
+offset_right = 579.0
+offset_bottom = 441.0
+theme_override_fonts/font = ExtResource("1_saq0g")
+theme_override_styles/normal = SubResource("StyleBoxFlat_dos7j")
+text = "Back"
+
+[node name="HTP LABEL" type="Label" parent="."]
+layout_mode = 0
+offset_left = 335.0
+offset_top = 186.0
+offset_right = 831.0
+offset_bottom = 259.0
+theme_override_fonts/font = ExtResource("1_saq0g")
+text = "(W/A/S/D or arrow keys) to move
+(Space) to slash your sword
+(ESC) to pause and check inventory
+(K) to use Item"
+
+[connection signal="focus_entered" from="main_menu_vbox/Play" to="." method="_on_play_focus_entered"]
+[connection signal="pressed" from="main_menu_vbox/Play" to="." method="_on_play_pressed"]
+[connection signal="focus_entered" from="main_menu_vbox/settings" to="." method="_on_settings_focus_entered"]
+[connection signal="pressed" from="main_menu_vbox/settings" to="." method="_on_settings_pressed"]
+[connection signal="focus_entered" from="main_menu_vbox/HTP" to="." method="_on_htp_focus_entered"]
+[connection signal="pressed" from="main_menu_vbox/HTP" to="." method="_on_htp_pressed"]
+[connection signal="focus_entered" from="main_menu_vbox/quit" to="." method="_on_quit_focus_entered"]
+[connection signal="pressed" from="main_menu_vbox/quit" to="." method="_on_quit_pressed"]
+[connection signal="finished" from="confirm" to="." method="_on_confirm_finished"]
+[connection signal="value_changed" from="settings_Vbox/Music" to="." method="_on_music_value_changed"]
+[connection signal="value_changed" from="settings_Vbox/SFX" to="." method="_on_sfx_value_changed"]
+[connection signal="value_changed" from="settings_Vbox/Master" to="." method="_on_sfx_value_changed"]
+[connection signal="value_changed" from="settings_Vbox/Master" to="." method="_on_master_value_changed"]
+[connection signal="pressed" from="settings_Vbox/Button" to="." method="_on_button_pressed"]
+[connection signal="focus_entered" from="bacc" to="." method="_on_bacc_focus_entered"]
+[connection signal="pressed" from="bacc" to="." method="_on_bacc_pressed"]

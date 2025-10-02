@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://daj3ejvs10rbb"]
+
+[ext_resource type="Texture2D" uid="uid://dxyke2wvq68mu" path="res://sprites/Flame.png" id="1_3me4d"]
+[ext_resource type="Script" path="res://scenes/fireball.gd" id="1_eankl"]
+[ext_resource type="Texture2D" uid="uid://df6jk05ixdd4y" path="res://sprites/light better.png" id="3_4uf5y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cnnic"]
+radius = 6.0
+
+[node name="fireball" type="CharacterBody2D"]
+collision_layer = 16
+script = ExtResource("1_eankl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_3me4d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cnnic")
+
+[node name="death timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.87451, 0.627451, 0.337255, 1)
+energy = 0.7
+texture = ExtResource("3_4uf5y")
+texture_scale = 0.45
+
+[connection signal="timeout" from="death timer" to="." method="_on_death_timer_timeout"]

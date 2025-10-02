@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://crer65u5v8g0"]
+
+[ext_resource type="Script" path="res://scenes/hp_bar.gd" id="1_68w42"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1vml"]
+bg_color = Color(0.913725, 0.152941, 0.188235, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2f235"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3r0me"]
+bg_color = Color(0.992157, 0.898039, 0, 1)
+
+[sub_resource type="Animation" id="Animation_33qo1"]
+resource_name = "lowhepe"
+length = 2.0
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.564706, 0, 0.4, 0.321569), Color(1, 0.509804, 0.792157, 0), Color(0.564706, 0, 0.4, 0.321569)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j8jca"]
+_data = {
+"lowhepe": SubResource("Animation_33qo1")
+}
+
+[node name="Hp bar" type="ProgressBar"]
+anchors_preset = -1
+anchor_right = 0.493
+anchor_bottom = 0.042
+offset_right = 0.0639648
+offset_bottom = -0.216002
+theme_override_styles/fill = SubResource("StyleBoxFlat_c1vml")
+max_value = 30.0
+value = 10.0
+show_percentage = false
+script = ExtResource("1_68w42")
+
+[node name="hit_showcaser" type="ProgressBar" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.004
+anchor_bottom = 1.0
+offset_right = -0.272034
+theme_override_styles/background = SubResource("StyleBoxEmpty_2f235")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3r0me")
+max_value = 30.0
+value = 15.0
+show_percentage = false
+
+[node name="show_hit_showcaser" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -15.0
+offset_top = -23.0
+offset_right = 25.0
+offset_bottom = 17.0
+scale = Vector2(7.92, 1.8)
+color = Color(0.991465, 0.499808, 0.784468, 0.00630528)
+
+[node name="hp warning" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_j8jca")
+}
+
+[connection signal="timeout" from="show_hit_showcaser" to="." method="_on_show_hit_showcaser_timeout"]

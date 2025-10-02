@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://cybqtvdrlda4y"]
+
+[ext_resource type="Script" path="res://scenes/enemy_encounter.gd" id="1_hcgfs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_flm7c"]
+size = Vector2(520, 333)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yevhi"]
+size = Vector2(114, 59)
+
+[sub_resource type="Animation" id="Animation_rvlor"]
+resource_name = "dooropen"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("door/door1colli:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("door2/door2colli:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_dli1f"]
+resource_name = "doorshut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("door/door1colli:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("door2/door2colli:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mbdhw"]
+_data = {
+"dooropen": SubResource("Animation_rvlor"),
+"doorshut": SubResource("Animation_dli1f")
+}
+
+[node name="enemy encounter" type="Area2D"]
+collision_mask = 131
+script = ExtResource("1_hcgfs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(107, 129.5)
+shape = SubResource("RectangleShape2D_flm7c")
+
+[node name="door" type="StaticBody2D" parent="."]
+
+[node name="door1colli" type="CollisionShape2D" parent="door"]
+position = Vector2(85, -48)
+shape = SubResource("RectangleShape2D_yevhi")
+debug_color = Color(0.901961, 0, 0.756863, 0.419608)
+
+[node name="door2" type="StaticBody2D" parent="."]
+position = Vector2(6, 354)
+
+[node name="door2colli" type="CollisionShape2D" parent="door2"]
+position = Vector2(85, -48)
+shape = SubResource("RectangleShape2D_yevhi")
+debug_color = Color(0.901961, 0, 0.756863, 0.419608)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mbdhw")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

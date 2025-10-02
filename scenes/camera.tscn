@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqk1pnveyrg16"]
+
+[ext_resource type="Script" path="res://scenes/Camera.gd" id="1_odpce"]
+
+[node name="roottransitioncamera" type="Camera2D"]
+position = Vector2(576, 321)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+script = ExtResource("1_odpce")
