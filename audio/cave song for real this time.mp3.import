@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cyqhe6h76tf34"
+path="res://.godot/imported/cave song for real this time.mp3-9f6cc62022bea95249524072d4f72f0b.mp3str"
+
+[deps]
+
+source_file="res://audio/cave song for real this time.mp3"
+dest_files=["res://.godot/imported/cave song for real this time.mp3-9f6cc62022bea95249524072d4f72f0b.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

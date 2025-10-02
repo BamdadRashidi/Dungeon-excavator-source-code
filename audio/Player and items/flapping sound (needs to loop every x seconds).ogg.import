@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://coyyiltrwa1jh"
+path="res://.godot/imported/flapping sound (needs to loop every x seconds).ogg-fcea7107c8acc84950d9b1dea52d8b60.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Player and items/flapping sound (needs to loop every x seconds).ogg"
+dest_files=["res://.godot/imported/flapping sound (needs to loop every x seconds).ogg-fcea7107c8acc84950d9b1dea52d8b60.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

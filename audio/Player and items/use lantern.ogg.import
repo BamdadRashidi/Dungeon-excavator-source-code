@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://2jynh7476now"
+path="res://.godot/imported/use lantern.ogg-5381ac1f35a2bc24a125955d393d6987.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Player and items/use lantern.ogg"
+dest_files=["res://.godot/imported/use lantern.ogg-5381ac1f35a2bc24a125955d393d6987.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

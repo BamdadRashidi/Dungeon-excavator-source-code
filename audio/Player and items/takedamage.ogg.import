@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c342xy8k7pryj"
+path="res://.godot/imported/takedamage.ogg-4c139d000bec9995bf3f9dace28bcc2f.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Player and items/takedamage.ogg"
+dest_files=["res://.godot/imported/takedamage.ogg-4c139d000bec9995bf3f9dace28bcc2f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

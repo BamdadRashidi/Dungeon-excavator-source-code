@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cksewh2oifwwb"
+path="res://.godot/imported/metal cling.ogg-3a916805cb5e20300378e42e5fd82dba.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Player and items/metal cling.ogg"
+dest_files=["res://.godot/imported/metal cling.ogg-3a916805cb5e20300378e42e5fd82dba.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

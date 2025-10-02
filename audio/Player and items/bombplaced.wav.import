@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ddlkk874vhite"
+path="res://.godot/imported/bombplaced.wav-5aa0f193a8e56eeb5a32038a6e17cb48.sample"
+
+[deps]
+
+source_file="res://audio/Player and items/bombplaced.wav"
+dest_files=["res://.godot/imported/bombplaced.wav-5aa0f193a8e56eeb5a32038a6e17cb48.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

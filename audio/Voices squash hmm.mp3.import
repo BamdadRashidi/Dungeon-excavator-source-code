@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cngodp77eqvjq"
+path="res://.godot/imported/Voices squash hmm.mp3-1b79e0c4137d5004f0481ed8dc8383d0.mp3str"
+
+[deps]
+
+source_file="res://audio/Voices squash hmm.mp3"
+dest_files=["res://.godot/imported/Voices squash hmm.mp3-1b79e0c4137d5004f0481ed8dc8383d0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
