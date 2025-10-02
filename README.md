@@ -7,7 +7,7 @@ This is the source code for a game that i made summer of 2024 before college wit
 
 
 >[!NOTE]
->To export the game, you need to download godot in order to build this project. once you made a new project, make sure to set it's path to where you cloned or pulled the repo from and then export it.
+>To export the game, you need to download godot in order to build this project. once you made a new project, make sure to set it's path to where you cloned or pulled the repo from and then export it as the creator cannot remember how to export the game properly himself lmao XD.
 # Key elements:
 
 ## A zelda inspired game:
