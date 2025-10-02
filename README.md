@@ -20,7 +20,22 @@ every sound and music was made by me even if some of the sounds were made from a
 
 
 # Screenshots (the game is this dark):
-![ominous](screenshots\ominous.png)
-![books](screenshots\books.png)
-![BOOM](screenshots\explotano.png)
-![lobby](screenshots\excavator.png)
+
+![ominous](C:\Users\LOQ\Desktop\godoty\Dungeon_game\screenshots\ominous.png)
+
+
+
+
+![books](C:\Users\LOQ\Desktop\godoty\Dungeon_game\screenshots\books.png)
+
+
+
+
+
+![BOOM](C:\Users\LOQ\Desktop\godoty\Dungeon_game\screenshots\explotano.png)
+
+
+
+
+
+![lobby](C:\Users\LOQ\Desktop\godoty\Dungeon_game\screenshots\excavator.png)
