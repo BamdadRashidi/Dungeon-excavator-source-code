@@ -3,7 +3,7 @@ This is the source code for a game that i made summer of 2024 before college wit
 
 
 > [!IMPORTANT]  
-> It should be noted that when the creator was making this game the summer of 2024, he did not know anything about git and making this repository with a project that was not made with git in mind was very hard.
+> It should be noted that when the creator was making this game the summer of 2024, he did not know anything about git and was a month away before he began university which made making this repository with a project that was not made with git in mind very difficult.
 
 # Key elements:
 
