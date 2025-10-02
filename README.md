@@ -1,6 +1,10 @@
 # Dungeon-excavator-source-code
 This is the source code for a game that i made summer of 2024 before college with godot.
 
+
+> [!IMPORTANT]  
+> It should be noted that when the creator was making this game the summer of 2024, he did not know anything about git and making this repository with a project that was not made with git in mind was very hard.
+
 # Key elements:
 
 ## A zelda inspired game:
