@@ -1,5 +1,5 @@
 # Dungeon-excavator-source-code
-This is the source code for a game that i made summer of 2024 before college with godot.
+This is the source code for a game that i made summer of 2024 before college with a way smaller knowledge of programming with godot.
 
 
 > [!IMPORTANT]  
