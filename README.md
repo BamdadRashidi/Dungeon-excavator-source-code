@@ -5,6 +5,9 @@ This is the source code for a game that i made summer of 2024 before college wit
 > [!IMPORTANT]  
 > It should be noted that when the creator was making this game the summer of 2024, he did not know anything about git and was a month away before he began university which made making this repository with a project that was not made with git in mind very difficult.
 
+
+>[!NOTE]
+>To export the game, you need to download godot in order to build this project. once you made a new project, make sure to set it's path to where you cloned or pulled the repo from and then export it.
 # Key elements:
 
 ## A zelda inspired game:
